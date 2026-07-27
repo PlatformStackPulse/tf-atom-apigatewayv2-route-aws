@@ -272,7 +272,9 @@ Installed via `make hooks`. Runs on every commit:
 
 ### Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0.0 |
 
 ### Modules
 
@@ -282,13 +284,20 @@ No providers.
 
 ### Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [aws_apigatewayv2_route.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_route) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_api_id"></a> [api\_id](#input\_api\_id) | The identifier of the API this route belongs to. | `string` | n/a | yes |
+| <a name="input_route_key"></a> [route\_key](#input\_route\_key) | The route key (e.g. "GET /api/health" or "$default"). | `string` | n/a | yes |
+| <a name="input_target"></a> [target](#input\_target) | The target for the route, typically "integrations/<integration\_id>". | `string` | n/a | yes |
 | <a name="input_attributes"></a> [attributes](#input\_attributes) | ID element. Additional attributes (e.g. `workers` or `cluster`) to add to `id`,<br/>in the order they appear in the list. New attributes are appended to the<br/>end of the list. The elements of the list are joined by the `delimiter`<br/>and treated as a single ID element. | `list(string)` | `[]` | no |
+| <a name="input_authorization_type"></a> [authorization\_type](#input\_authorization\_type) | Authorization type: NONE, AWS\_IAM, JWT, or CUSTOM. | `string` | `"NONE"` | no |
+| <a name="input_authorizer_id"></a> [authorizer\_id](#input\_authorizer\_id) | The authorizer identifier when authorization\_type is JWT or CUSTOM. | `string` | `null` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br/>See description of individual variables for details.<br/>Leave string and numeric variables as `null` to use default value.<br/>Individual variable settings (non-null) override settings in context object,<br/>except for attributes and tags, which are merged. | <pre>object({<br/>    enabled             = optional(bool, true)<br/>    namespace           = optional(string, null)<br/>    tenant              = optional(string, null)<br/>    environment         = optional(string, null)<br/>    stage               = optional(string, null)<br/>    name                = optional(string, null)<br/>    delimiter           = optional(string, null)<br/>    attributes          = optional(list(string), [])<br/>    tags                = optional(map(string), {})<br/>    label_order         = optional(list(string), null)<br/>    regex_replace_chars = optional(string, null)<br/>    id_length_limit     = optional(number, null)<br/>    label_key_case      = optional(string, null)<br/>    label_value_case    = optional(string, null)<br/>    labels_as_tags      = optional(set(string), null)<br/>    descriptor_formats = optional(map(object({<br/>      format = string<br/>      labels = list(string)<br/>    })), {})<br/>  })</pre> | `{}` | no |
 | <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between ID elements.<br/>Defaults to `-` (hyphen). Set to `""` to use no delimiter at all. | `string` | `null` | no |
 | <a name="input_descriptor_formats"></a> [descriptor\_formats](#input\_descriptor\_formats) | Describe additional descriptors to be output in the `descriptors` output map.<br/>Map of maps. Keys are names of descriptors. Values are maps of the form<br/>`{<br/>   format = string<br/>   labels = list(string)<br/>}`<br/>`format` is a Terraform format string to be passed to the `format()` function.<br/>`labels` is a list of labels, in order, to pass to `format()` function.<br/>Label values will be normalized before being passed to `format()` so they will be<br/>identical to how they appear in `id`.<br/>Default is `{}` (`descriptors` output will be empty). | <pre>map(object({<br/>    format = string<br/>    labels = list(string)<br/>  }))</pre> | `{}` | no |
@@ -310,7 +319,7 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_enabled"></a> [enabled](#output\_enabled) | Whether the module is enabled. |
+| <a name="output_id"></a> [id](#output\_id) | The route identifier. |
 <!-- END_TF_DOCS -->
 
 ## Learning Materials
